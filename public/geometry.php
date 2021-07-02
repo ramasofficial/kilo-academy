@@ -8,6 +8,7 @@ use Kilo\Geometry\Shape\Rectangle;
 
 require_once '../vendor/autoload.php';
 
+/* ---- ---- SQUARE ---- ---- */
 $square = new Square(2);
 $geometry = new Geometry($square);
 

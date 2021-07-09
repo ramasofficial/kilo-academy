@@ -8,9 +8,9 @@ use Kilo\Solid\Repositories\WorkoutRepository;
 
 class Workout
 {
-    public function __construct()
+    public function __construct(WorkoutRepository $repository)
     {
-        $this->workoutRepository = new WorkoutRepository();
+        $this->repository = $repository;
     }
 
     public function getWorkoutIdByScore(Level $level): ?int
@@ -19,19 +19,19 @@ class Workout
 
         switch ($level) {
             case Level::WALKER:
-                $workouts = $this->workoutRepository->getWorkoutByLevelRange(Client::WALKER_RANGE);
+                $workouts = $this->repository->getWorkoutByLevelRange(Client::WALKER_RANGE);
                 break;
             case Level::BEGINNER:
-                $workouts = $this->workoutRepository->getWorkoutByLevelRange(Client::BEGINNER_RANGE);
+                $workouts = $this->repository->getWorkoutByLevelRange(Client::BEGINNER_RANGE);
                 break;
             case Level::INTERMEDIATE:
-                $workouts = $this->workoutRepository->getWorkoutByLevelRange(Client::INTERMEDIATE_RANGE);
+                $workouts = $this->repository->getWorkoutByLevelRange(Client::INTERMEDIATE_RANGE);
                 break;
             case Level::ADVANCED:
-                $workouts = $this->workoutRepository->getWorkoutByLevelRange(Client::ADVANCED_RANGE);
+                $workouts = $this->repository->getWorkoutByLevelRange(Client::ADVANCED_RANGE);
                 break;
             case Level::PRO:
-                $workouts = $this->workoutRepository->getWorkoutByLevelRange(Client::PRO_RANGE);
+                $workouts = $this->repository->getWorkoutByLevelRange(Client::PRO_RANGE);
                 break;
             default:
                 throw new InvalidArgumentException('Workout by this score doesn\'t exist!');
